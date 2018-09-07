@@ -19,13 +19,14 @@
 import xlrd
 import re
 
-file_name = 'FBCA.00.20_人工供包机(900L)V2.0.xlsx'
+file_name = 'FBCC.00.10J_人工供包机(900RJ)V2.0.xlsx'
 try:
     book = xlrd.open_workbook(file_name)
     sheet = book.sheet_by_index(0)
     print('Total rows: ' + str(sheet.nrows))
     err_ID = 0
     err_name = 0
+    reg = re.compile(r'^(.*)_(.*)$')
     for rx in range(sheet.nrows):
         try:
             # 若第一格为正整数才检查该行数据
@@ -37,15 +38,14 @@ try:
                 # 验证名称是否一致
                 cell_3 = sheet.cell(rx, 3).value
                 if cell_1:
-                    if re.findall(r"{}".format('^' + cell_2 + '_'), cell_1):
+                    if reg.findall(cell_1)[0][0] == cell_2:
                         pass
                     else:
                         print('ID wrong in row: ' + str(rx + 1),
                               sheet.cell(rx, 1).value)
                         err_ID += 1
                 if cell_1:
-                    # if re.findall(r"{}".format('_' + cell_3 + '$'), cell_1):
-                    if cell_1.find(cell_3):
+                    if reg.findall(cell_1)[0][1] == cell_3:
                         pass
                         # print('OK')
                     else:
