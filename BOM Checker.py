@@ -66,7 +66,7 @@ while True:
             print("Wrong Name Count: {}".format(err_name).center(35, '-'))
     except Exception as e:
         print(e)
-    inp = input('Enter to reflesh, other key to exit --> ')
+    inp = input("Press 'Enter' to refresh, Press other key to exit --> ")
     if not inp:
         continue
     else:
