@@ -11,7 +11,7 @@
 #      HomePage: https://jase.im/
 #       Version: 0.0.1
 #       License: GPLv2
-#    LastChange: 2018-09-11 11:10:36
+#    LastChange: 2018-09-11 13:31:32
 #       History:
 # =============================================================================
 '''
@@ -44,7 +44,9 @@ while True:
                         if reg.findall(cell_1)[0][0] == cell_2:
                             pass
                         else:
-                            print('ID wrong in row: ' + str(rx + 1),
+                            print(
+                                'Row: {} --> ID Wrong'.format(rx + 1).ljust(
+                                    25, '-') + ">",
                                 sheet.cell(rx, 1).value)
                             err_ID += 1
                     if cell_1:
@@ -52,7 +54,9 @@ while True:
                             pass
                             # print('OK')
                         else:
-                            print('Name wrong in row: ' + str(rx + 1),
+                            print(
+                                'Row: {} --> Name Wrong'.format(rx + 1).ljust(
+                                    25, '-') + ">",
                                 sheet.cell(rx, 1).value)
                             err_name += 1
 
