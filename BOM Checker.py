@@ -11,7 +11,7 @@
 #      HomePage: https://jase.im/
 #       Version: 0.0.1
 #       License: GPLv2
-#    LastChange: 2018-09-12 15:36:46
+#    LastChange: 2018-09-12 15:43:46
 #       History:
 # =============================================================================
 '''
@@ -41,19 +41,13 @@ while True:
                     # 验证名称是否一致
                     cell_3 = sheet.cell(rx, 3).value
                     if cell_1:
-                        if reg.findall(cell_1)[0][0] == cell_2:
-                            pass
-                        else:
+                        if reg.findall(cell_1)[0][0] != cell_2:
                             print(
                                 'Row: {} '.format(rx + 1).ljust(12, '-') + ">",
                                 'ID Wrong '.ljust(14, '-') + '>',
                                 sheet.cell(rx, 1).value)
                             err_ID += 1
-                    if cell_1:
-                        if reg.findall(cell_1)[0][1] == cell_3:
-                            pass
-                            # print('OK')
-                        else:
+                        if reg.findall(cell_1)[0][1] != cell_3:
                             print(
                                 'Row: {} '.format(rx + 1).ljust(12, '-') + ">",
                                 'Name Wrong '.ljust(14, '-') + '>',
