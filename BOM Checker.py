@@ -11,7 +11,7 @@
 #      HomePage: https://jase.im/
 #       Version: 0.0.1
 #       License: GPLv2
-#    LastChange: 2018-09-11 13:31:32
+#    LastChange: 2018-09-12 15:36:46
 #       History:
 # =============================================================================
 '''
@@ -20,7 +20,7 @@ import xlrd
 import re
 import os
 
-file_name = 'FBCC.00.10J_人工供包机(900RJ)V2.0.xlsx'
+file_name = 'sheet1.xlsx'
 while True:
     try:
         os.system('cls')
@@ -45,8 +45,8 @@ while True:
                             pass
                         else:
                             print(
-                                'Row: {} --> ID Wrong'.format(rx + 1).ljust(
-                                    25, '-') + ">",
+                                'Row: {} '.format(rx + 1).ljust(12, '-') + ">",
+                                'ID Wrong '.ljust(14, '-') + '>',
                                 sheet.cell(rx, 1).value)
                             err_ID += 1
                     if cell_1:
@@ -55,8 +55,8 @@ while True:
                             # print('OK')
                         else:
                             print(
-                                'Row: {} --> Name Wrong'.format(rx + 1).ljust(
-                                    25, '-') + ">",
+                                'Row: {} '.format(rx + 1).ljust(12, '-') + ">",
+                                'Name Wrong '.ljust(14, '-') + '>',
                                 sheet.cell(rx, 1).value)
                             err_name += 1
 
