@@ -19,6 +19,7 @@
 import os
 import re
 import xlrd
+import time
 
 path = os.getcwd()
 xl_file = '_Sheet1.xlsx'
@@ -59,6 +60,7 @@ def get_checked_files_inXLS(xl_file):
 def main():
     while True:
 
+        start_time = time.time()
         os.system('cls')
         files = get_PDF_files(path)
         values, symmetry_files = get_checked_files_inXLS(xl_file)
@@ -76,24 +78,31 @@ def main():
                 else:
                     files_lost.append(v)
         print('\nPDF图纸文件和BOM对比结果如下↓')
-        print('\n' + 'Files useless'.center(50, '-'))
+        print('\n' +
+              'Files useless: {}'.format(len(files_useless)).center(50, '-'))
         if not files_useless:
-            print('没有多余的文件')
+            print('未发现多余的文件')
         else:
             for i in files_useless:
                 print(i)
-        print('\n' + 'Files lost'.center(50, '-'))
+            print('-' * 50)
+        print('\n' + 'Files lost: {}'.format(len(files_lost)).center(50, '-'))
         if not files_lost:
-            print('没有缺少的文件')
+            print('未发现缺少的文件')
         else:
             for i in files_lost:
                 print(i)
-        print('\n' + 'Symmetry files'.center(50, '-'))
+            print('-' * 50)
+        print('\n' +
+              'Symmetry files: {}'.format(len(symmetry_files)).center(50, '-'))
         if not symmetry_files:
-            print('没有找到使用对称图纸的文件')
+            print('未找到使用对称图纸的文件')
         else:
             for i in symmetry_files:
                 print(i)
+            print('-' * 50)
+        end_time = time.time()
+        print('\n过程耗时：{}s'.format(round(end_time - start_time, 2)))
         inp = input('\nPress "Enter" to refresh, press other key to Exit!')
         if inp:
             break
