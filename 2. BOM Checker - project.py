@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 '''
 # =============================================================================
-#      FileName: BOM Checker - project.py
+#      FileName: 2. BOM Checker - project.py
 #          Desc: 检查BOM和由SolidWorks导出的清单进行校对，核对BOM中项目有无缺失，
                  以及数量是否正. 确第一列为标识，为正整数时检查该行数据，
                  第二列为图号，第三列为数量
@@ -11,7 +11,7 @@
 #      HomePage: https://jase.im/
 #       Version: 0.0.1
 #       License: GPLv2
-#    LastChange: 2018-10-10 14:40:03
+#    LastChange: 2018-10-10 16:53:21
 #       History:
 # =============================================================================
 '''
