@@ -23,6 +23,17 @@ import time
 
 file_name_project = 'FBCA.00.20D_人工供包机(900LD)V2.0.xlsx'
 file_name_checker = 'FBCA.00.20D_人工供包机(900LD)V2.0 - checker.xlsx'
+
+help_doc = """
+用途：
+    检查BOM和由SolidWorks导出的清单进行校对，核对BOM中项目有无缺失,
+    以及数量是否正确.
+使用说明：
+    第一列为标识，为正整数时检查该行数据，
+    第二列为图号
+    第三列为数量
+"""
+
 while True:
     try:
         start_time = time.time()
@@ -76,6 +87,7 @@ while True:
             if data_p.get(item):
                 if not data_c.get(item):
                     item_useless.append(item)
+        print(help_doc)
         print('缺少的项：')
         for i in item_lost:
             print(i)

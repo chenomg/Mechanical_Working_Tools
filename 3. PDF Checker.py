@@ -4,7 +4,7 @@
 # =============================================================================
 #      FileName: 3. PDF Checker.py
 #          Desc: 用于检查PDF文件和BOM中的文件名是否能对应，显示出多余和缺少的PDF
-#                第一列为flag，若为正整数则检查，若为-1则为对称件，不需要图纸
+#                第一列为Flag，若为正整数则检查，若为-1则为对称件，不需要图纸
 #                第二列为文件名
 #                PDF文件和表格需要放在和本程序同一文件夹
 #        Author: Jase Chen
@@ -12,7 +12,7 @@
 #      HomePage: https://jase.im/
 #       Version: 0.0.1
 #       License: GPLv2
-#    LastChange: 2018-10-10 16:53:35
+#    LastChange: 2018-10-11 11:14:26
 #       History:
 # =============================================================================
 '''
@@ -23,6 +23,15 @@ import time
 
 path = os.getcwd()
 xl_file = '_Sheet1.xlsx'
+help_doc = """
+用途：
+    用于检查PDF文件和BOM中的文件名是否能对应，显示出多余和缺少的PDF
+使用说明：
+    BOM文件名：_Sheet1.xlsx
+    PDF文件和BOM需要放在和本程序同一文件夹
+    BOM第一列为Flag，若为正整数则检查，若为-1则为对称件，不需要图纸
+    第二列为文件名(图号_名称)
+"""
 
 
 def get_PDF_files(path):
@@ -77,6 +86,7 @@ def main():
                     continue
                 else:
                     files_lost.append(v)
+        print(help_doc)
         print('\nPDF图纸文件和BOM对比结果如下↓')
         print('\n' +
               'Files useless: {}'.format(len(files_useless)).center(50, '-'))
