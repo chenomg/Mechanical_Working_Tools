@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 '''
 # =============================================================================
-#      FileName: 1. BOM Checker.py
+#      FileName: 1_BOM_Checker.py
 #          Desc: 检查BOM(第一张表格)表中文件名以及部件属性是否相匹配，第一列为标
 识，为正整数时检查该行数据，第二列为文件名，结构：图号_名称，第三列为属性中图号，
 第四列为属性中名称
@@ -11,7 +11,7 @@
 #      HomePage: https://jase.im/
 #       Version: 0.0.1
 #       License: GPLv2
-#    LastChange: 2018-10-10 16:53:05
+#    LastChange: 2018-10-16 13:45:50
 #       History:
 # =============================================================================
 '''
@@ -20,10 +20,22 @@ import xlrd
 import re
 import os
 
-file_name = 'sheet1.xlsx'
+file_name = '_Sheet1.xlsx'
+help_doc = """
+用途：
+    用于检查BOM(第一张表格)表中文件名以及部件属性是否相匹配
+使用说明：
+    BOM文件名：_Sheet1.xlsx
+    BOM第一列为Flag，若为正整数则检查
+    第二列为文件名，结构：图号_名称
+    第三列为属性中图号
+    第四列为属性中名称
+"""
+
 while True:
     try:
         os.system('cls')
+        print(help_doc)
         book = xlrd.open_workbook(file_name)
         sheet = book.sheet_by_index(0)
         print('Total rows: ' + str(sheet.nrows))

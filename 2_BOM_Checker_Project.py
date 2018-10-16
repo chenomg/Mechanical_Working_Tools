@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 '''
 # =============================================================================
-#      FileName: 2. BOM Checker - project.py
+#      FileName: 2_BOM_Checker_Project.py
 #          Desc: 检查BOM和由SolidWorks导出的清单进行校对，核对BOM中项目有无缺失，
                  以及数量是否正. 确第一列为标识，为正整数时检查该行数据，
                  第二列为图号，第三列为数量
@@ -11,7 +11,7 @@
 #      HomePage: https://jase.im/
 #       Version: 0.0.1
 #       License: GPLv2
-#    LastChange: 2018-10-10 16:53:21
+#    LastChange: 2018-10-16 14:36:59
 #       History:
 # =============================================================================
 '''
@@ -21,14 +21,16 @@ import re
 import os
 import time
 
-file_name_project = 'FBCA.00.20D_人工供包机(900LD)V2.0.xlsx'
-file_name_checker = 'FBCA.00.20D_人工供包机(900LD)V2.0 - checker.xlsx'
+file_name_project = '_Sheet.xlsx'
+file_name_checker = '_Sheet_P.xlsx'
 
 help_doc = """
 用途：
     检查BOM和由SolidWorks导出的清单进行校对，核对BOM中项目有无缺失,
     以及数量是否正确.
 使用说明：
+    待发送BOM: _Sheet.xlsx
+    SolidWorks导出BOM: _Sheet_P.xlsx
     第一列为标识，为正整数时检查该行数据，
     第二列为图号
     第三列为数量
@@ -38,6 +40,7 @@ while True:
     try:
         start_time = time.time()
         os.system('cls')
+        print(help_doc)
         book_p = xlrd.open_workbook(file_name_project)
         sheet_p = book_p.sheet_by_index(0)
         book_c = xlrd.open_workbook(file_name_checker)
