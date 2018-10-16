@@ -76,17 +76,16 @@ def main():
             values, symmetry_files = get_checked_files_inXLS(xl_file)
             files_useless = []
             files_lost = []
-            if files and values:
-                for f in files:
-                    if f in values:
-                        continue
-                    else:
-                        files_useless.append(f)
-                for v in values:
-                    if v in files:
-                        continue
-                    else:
-                        files_lost.append(v)
+            for f in files:
+                if f in values:
+                    continue
+                else:
+                    files_useless.append(f)
+            for v in values:
+                if v in files:
+                    continue
+                else:
+                    files_lost.append(v)
             print(help_doc)
             print('\nPDF图纸文件和BOM对比结果如下↓')
             print('\n' + 'Files useless: {}'.format(len(files_useless)).center(
