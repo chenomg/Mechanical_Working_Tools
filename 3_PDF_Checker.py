@@ -70,8 +70,8 @@ def get_checked_files_inXLS(xl_file):
 def main():
     try:
         while True:
+            print_list = []
             start_time = time.time()
-            os.system('cls')
             files = get_PDF_files(path)
             values, symmetry_files = get_checked_files_inXLS(xl_file)
             files_useless = []
@@ -86,37 +86,39 @@ def main():
                     continue
                 else:
                     files_lost.append(v)
-            print(help_doc)
-            print('\nPDF图纸文件和BOM对比结果如下↓')
-            print('\n' + 'Files useless: {}'.format(len(files_useless)).center(
-                50, '-'))
+            print_list.append(help_doc)
+            print_list.append('\nPDF图纸文件和BOM对比结果如下↓')
+            print_list.append('\n' + 'Files useless: {}'.format(
+                len(files_useless)).center(50, '-'))
             if not files_useless:
-                print('未发现多余的文件')
+                print_list.append('未发现多余的文件')
             else:
                 for i in files_useless:
-                    print(i)
-                print('-' * 50)
-            print('\n' +
-                  'Files lost: {}'.format(len(files_lost)).center(50, '-'))
+                    print_list.append(i)
+                print_list.append('-' * 50)
+            print_list.append('\n' + 'Files lost: {}'.format(len(files_lost)).
+                              center(50, '-'))
             if not files_lost:
-                print('未发现缺少的文件')
+                print_list.append('未发现缺少的文件')
             else:
                 for i in files_lost:
-                    print(i)
-                print('-' * 50)
-            print('\n' + 'Symmetry files: {}'.format(len(symmetry_files)).
-                  center(50, '-'))
+                    print_list.append(i)
+                print_list.append('-' * 50)
+            print_list.append('\n' + 'Symmetry files: {}'.format(
+                len(symmetry_files)).center(50, '-'))
             if not symmetry_files:
-                print('未找到使用对称图纸的文件')
+                print_list.append('未找到使用对称图纸的文件')
             else:
                 for i in symmetry_files:
-                    print(i)
-                print('-' * 50)
+                    print_list.append(i)
+                print_list.append('-' * 50)
             end_time = time.time()
-            print('\n过程耗时：{}s'.format(round(end_time - start_time, 2)))
-            inp = input('\nPress "Enter" to refresh, press other key to Exit!')
-            if inp:
-                break
+            print_list.append('\n过程耗时：{}s'.format(
+                round(end_time - start_time, 2)))
+            print_list.append('\nPress "Ctrl + c" to  Exit!')
+            os.system('cls')
+            print('\n'.join(print_list))
+            time.sleep(0.5)
     except Exception as e:
         print(e)
 

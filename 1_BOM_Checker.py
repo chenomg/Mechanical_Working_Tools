@@ -19,6 +19,7 @@
 import xlrd
 import re
 import os
+from time import sleep
 
 file_name = '_Sheet1.xlsx'
 help_doc = """
@@ -33,12 +34,13 @@ help_doc = """
 """
 
 while True:
+    sleep(0.5)
     try:
-        os.system('cls')
-        print(help_doc)
+        print_list = []
+        print_list.append(help_doc)
         book = xlrd.open_workbook(file_name)
         sheet = book.sheet_by_index(0)
-        print('Total rows: ' + str(sheet.nrows))
+        print_list.append('Total rows: ' + str(sheet.nrows))
         err_ID = 0
         err_name = 0
         reg = re.compile(r'^(.*)_(.*)$')
@@ -54,30 +56,30 @@ while True:
                     cell_3 = sheet.cell(rx, 3).value
                     if cell_1:
                         if reg.findall(cell_1)[0][0] != cell_2:
-                            print(
-                                'Row: {} '.format(rx + 1).ljust(12, '-') + ">",
-                                'ID Wrong '.ljust(14, '-') + '>',
-                                sheet.cell(rx, 1).value)
+                            print_list.append(str(
+                                'Row: {} '.format(rx + 1).ljust(12, '-') + "> "+
+                                'ID Wrong '.ljust(14, '-') + '> '+
+                                sheet.cell(rx, 1).value))
                             err_ID += 1
                         if reg.findall(cell_1)[0][1] != cell_3:
-                            print(
-                                'Row: {} '.format(rx + 1).ljust(12, '-') + ">",
-                                'Name Wrong '.ljust(14, '-') + '>',
-                                sheet.cell(rx, 1).value)
+                            print_list.append(str(
+                                'Row: {} '.format(rx + 1).ljust(12, '-') + "> "+
+                                'Name Wrong '.ljust(14, '-') + '> '+
+                                sheet.cell(rx, 1).value))
                             err_name += 1
 
             except Exception as e:
                 pass
 
         if not err_ID and not err_name:
-            print('All Checking Done.'.center(35, '+'))
+            print_list.append('All Checking Done.'.center(35, '+'))
         else:
-            print("Wrong ID Count: {}".format(err_ID).center(35, '-'))
-            print("Wrong Name Count: {}".format(err_name).center(35, '-'))
+            print_list.append("Wrong ID Count: {}".format(err_ID).center(
+                35, '-'))
+            print_list.append("Wrong Name Count: {}".format(err_name).center(
+                35, '-'))
+        print_list.append('\nPress "Ctrl + c" to  Exit!')
+        os.system('cls')
+        print('\n'.join(print_list))
     except Exception as e:
         print(e)
-    inp = input("Press 'Enter' to refresh, Press other key to exit --> ")
-    if not inp:
-        continue
-    else:
-        break
